@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/DO-XX-favicon/favicon-32x32.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="An ambitious world with endless utility."
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="stylesheet" href="lib/carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="lib/carousel/owl.theme.default.css">
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>DO-XX</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!--
+    <script src="lib/carousel/owl.carousel.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        const owl = $('.owl-carousel').owlCarousel({
+          loop: true,
+          nav: true,
+          navText: ["<div>LEFT</div>","<div>RIGHT</div>"],
+          // autoplay: true,
+          // autoplayTimeout:5000,
+          // smartSpeed: 1000
+          items: 1,
+        });
+
+        $('.event-prev-button').click(function () {
+          owl.trigger('prev.owl.carousel');
+        })
+        $('.event-next-button').click(function () {
+          owl.trigger('next.owl.carousel', [300]);
+        })
+      });
+    </script>
+-->
+
+
+
+<!--
+    <script src="fastclick.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="jquery.fullpage.min.js"></script>
+    <script>
+      FastClick.attach(document.body);
+      $(document).ready(function () {
+        $('#fullpage').fullpage();
+
+      });
+    </script>
+-->
+
+
+
+<!--
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script>
+
+      $(document).ready(function () {
+        var supportTouch = $.support.touch,
+                scrollEvent = "touchmove scroll",
+                touchStartEvent = supportTouch ? "touchstart" : "mousedown",
+                touchStopEvent = supportTouch ? "touchend" : "mouseup",
+                touchMoveEvent = supportTouch ? "touchmove" : "mousemove";
+        $.event.special.swipeupdown = {
+          setup: function() {
+            var thisObject = this;
+            var $this = $(thisObject);
+            $this.bind(touchStartEvent, function(event) {
+              var data = event.originalEvent.touches ?
+                      event.originalEvent.touches[ 0 ] :
+                      event,
+                      start = {
+                        time: (new Date).getTime(),
+                        coords: [ data.pageX, data.pageY ],
+                        origin: $(event.target)
+                      },
+                      stop;
+
+              function moveHandler(event) {
+                if (!start) {
+                  return;
+                }
+                var data = event.originalEvent.touches ?
+                        event.originalEvent.touches[ 0 ] :
+                        event;
+                stop = {
+                  time: (new Date).getTime(),
+                  coords: [ data.pageX, data.pageY ]
+                };
+
+                // prevent scrolling
+                if (Math.abs(start.coords[1] - stop.coords[1]) > 10) {
+                  event.preventDefault();
+                }
+              }
+              $this
+                      .bind(touchMoveEvent, moveHandler)
+                      .one(touchStopEvent, function(event) {
+                        $this.unbind(touchMoveEvent, moveHandler);
+                        if (start && stop) {
+                          if (stop.time - start.time < 1000 &&
+                                  Math.abs(start.coords[1] - stop.coords[1]) > 30 &&
+                                  Math.abs(start.coords[0] - stop.coords[0]) < 75) {
+                            start.origin
+                                    .trigger("swipeupdown")
+                                    .trigger(start.coords[1] > stop.coords[1] ? "swipeup" : "swipedown");
+                          }
+                        }
+                        start = stop = undefined;
+                      });
+            });
+          }
+        };
+        $.each({
+          swipedown: "swipeupdown",
+          swipeup: "swipeupdown"
+        }, function(event, sourceEvent){
+          $.event.special[event] = {
+            setup: function(){
+              $(this).bind(sourceEvent, $.noop);
+            }
+          };
+        });
+
+        $('#ref-scrolling').on('swipedown',function(){console.log("swipedown..");} );
+        $('#ref-scrolling').on('swipeup',function(){console.log("swipeup..");} );
+      });
+    </script>
+-->
+
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-touch-events/2.0.0/jquery.mobile-events.min.js"> </script>
+    <script>
+      const step = 100;
+      let slength = 0;
+      const pnls = 6 * 100;
+      const footerHeight = $('.panel-sixth').offsetHeight / (window.innerHeight / 100);
+      $(document).ready(function () {
+        $('#ref-scrolling__').bind('swipeup', function () {
+          slength = slength - step;
+          $('#ref-scrolling__').css('transform', 'translateY(' + slength + 'vh)');
+
+          // if ((Math.abs(slength) + step + (step - footerHeight)) < (pnls)) {
+          //   console.log('up')
+          // }
+        });
+
+        $('#ref-scrolling__').bind('swipedown', function () {
+          console.log('down')
+        });
+      });
+    </script>
+-->
+
+  </body>
+</html>
